@@ -12,7 +12,7 @@
 // box and the keyboard is put back in the open tab.
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { TerminalPanel } from "@/components/Terminal";
+import { TerminalPanel } from "./LazyTerminalPanel";
 import { cn } from "@/lib/cn";
 import {
   across,

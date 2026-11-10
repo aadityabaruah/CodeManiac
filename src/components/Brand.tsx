@@ -1,23 +1,7 @@
 import { CreatureMark } from "./Avatar";
 import { cn } from "@/lib/cn";
 
-/**
- * The Bloks mark: two interlocking pinwheels, every block its own color.
- * Geometry and palette lifted 1:1 from the brand file
- * (public/brand/bloks-mark.svg), don't eyeball-edit these rects.
- * Pass `fill` for a single-color version in subdued contexts.
- */
-const MARK_BLOCKS: Array<{ x: number; y: number; w: number; h: number; c: string }> = [
-  { x: 0, y: 0, w: 279, h: 1147, c: "#004aad" },
-  { x: 334, y: 0, w: 937, h: 279, c: "#ff751f" },
-  { x: 992, y: 335, w: 279, h: 1147, c: "#cb6ce6" },
-  { x: 0, y: 1203, w: 937, h: 279, c: "#ff3131" },
-  { x: 320, y: 381, w: 136, h: 557, c: "#5ce1e6" },
-  { x: 482, y: 381, w: 455, h: 136, c: "#ff5757" },
-  { x: 801, y: 544, w: 136, h: 557, c: "#7ed957" },
-  { x: 320, y: 965, w: 455, h: 136, c: "#ffbd59" },
-];
-
+/** CodeManiac's code-bracket mark. Export names keep upstream imports compatible. */
 export function BloksMark({
   size = 32,
   fill,
@@ -32,14 +16,16 @@ export function BloksMark({
     <svg
       width={size}
       height={size}
-      viewBox="0 0 1272 1483"
+      viewBox="0 0 128 128"
       role="img"
-      aria-label="Bloks"
+      aria-label="CodeManiac"
       className={cn("shrink-0", className)}
     >
-      {MARK_BLOCKS.map((b, i) => (
-        <rect key={i} x={b.x} y={b.y} width={b.w} height={b.h} fill={fill ?? b.c} />
-      ))}
+      <g fill="none" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M43 34 13 64 43 94" stroke={fill ?? "#ff751f"} />
+        <path d="m85 34 30 30-30 30" stroke={fill ?? "#cb6ce6"} />
+        <path d="M75 26 53 102" stroke={fill ?? "#ff5757"} />
+      </g>
     </svg>
   );
 }
@@ -105,7 +91,7 @@ export function BlockField() {
   );
 }
 
-/** The full wordmark from the brand file, swapped per theme. */
+/** CodeManiac wordmark, swapped per theme. */
 export function BloksLogo({
   compact = false,
   className = "h-12",
@@ -117,13 +103,13 @@ export function BloksLogo({
   return (
     <>
       <img
-        src="/brand/bloks-wordmark-light.png"
-        alt="Bloks"
+        src="/brand/codemaniac-wordmark-light.svg"
+        alt="CodeManiac"
         className={`${className} w-auto dark:hidden`}
       />
       <img
-        src="/brand/bloks-wordmark-dark.png"
-        alt="Bloks"
+        src="/brand/codemaniac-wordmark-dark.svg"
+        alt="CodeManiac"
         className={`hidden ${className} w-auto dark:block`}
       />
     </>

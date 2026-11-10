@@ -88,11 +88,16 @@ describe("the edge's line", () => {
     assert.match(css, /\.side-divider::before,\s*\.side-divider::after \{[^}]*linear-gradient\(to bottom, var\(--brand-gradient\)\)/);
   });
 
-  test("fades at the top and the bottom, and only drifts for someone who has not asked for less motion", () => {
+  test("fades at both ends and only drifts during interaction when motion is allowed", () => {
     assert.match(css, /mask-image: linear-gradient\(to bottom, transparent, #000 35%, #000 65%, transparent\)/);
     const drift = css.indexOf("animation: side-divider-drift");
     assert.ok(drift > 0);
     const guard = css.lastIndexOf("@media (prefers-reduced-motion: no-preference)", drift);
-    assert.ok(guard > 0 && drift - guard < 200, "the drift runs outside the no-preference guard");
+    assert.ok(guard > 0 && drift - guard < 800, "the drift runs outside the no-preference guard");
+    const interaction = css.slice(guard, drift);
+    assert.match(interaction, /\.side-edge:hover \.side-divider/);
+    assert.match(interaction, /\.side-edge:focus-visible \.side-divider/);
+    assert.match(interaction, /\.side-edge\[data-dragging\] \.side-divider/);
+    assert.doesNotMatch(css, /(?:^|\n)\s*\.side-divider::(?:before|after)\s*\{[^}]*animation\s*:\s*side-divider-drift/);
   });
 });

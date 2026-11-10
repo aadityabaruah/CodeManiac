@@ -8,6 +8,7 @@
 // for this start is put in place (server/pending-restore.ts).
 import { CLOUD_KEY, licenceFrom, licenceToUse } from "./licence.ts";
 import "./pending-restore.ts";
+import { frameAncestors } from "./vscode-embedding.ts";
 import { codexTextFor, itemProgress, isProgressText, type CodexText } from "./codex-text.ts";
 import { SaidOnce, desktopNotice, noticeKey, unreadCount as desktopUnreadCount } from "./desktop-notice.ts";
 import { closeSync, createReadStream, createWriteStream, existsSync, fstatSync, lstatSync, mkdirSync, openSync, readdirSync, readFileSync, readSync, rmSync, statSync, unlinkSync, watch, writeFileSync, writeSync, renameSync } from "node:fs";
@@ -839,7 +840,7 @@ const SECURITY_HEADERS = {
     // it the viewer opens as a blank page
     `frame-src 'self' ${VIEWER_ORIGIN}`,
     "object-src 'none'",
-    "frame-ancestors 'none'",
+    frameAncestors(),
     "base-uri 'none'",
     "form-action 'none'",
   ].join("; "),

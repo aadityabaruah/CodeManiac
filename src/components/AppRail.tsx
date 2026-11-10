@@ -102,7 +102,7 @@ export function AppRail() {
   return (
     <TooltipProvider delayDuration={300}>
       <nav
-        aria-label="Bloks"
+        aria-label="CodeManiac"
         className="flex h-full w-14 shrink-0 flex-col items-center bg-sidebar pb-3"
       >
         {/* the title bar above holds the traffic lights; the icons start

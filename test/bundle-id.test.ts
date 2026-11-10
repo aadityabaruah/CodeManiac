@@ -24,10 +24,7 @@ test("the packaged app and the computer-use host claim the same bundle id", () =
   assert.equal(host, packaged);
 });
 
-test("the bundle id sits under the domain we own", () => {
-  // Every other identifier in the tree is dev.bloks.something: the iOS
-  // bundle, the app group, the keychain service, the APNs topic, the VM
-  // labels. A com.bloks.something id would claim reverse DNS on a domain
-  // that is not ours, and would disagree with all of them.
-  assert.match(packagedId()!, /^dev\.bloks\./);
+test("the desktop fork uses its own GitHub namespace", () => {
+  // Keep the desktop fork distinct from the upstream app's permissions.
+  assert.equal(packagedId(), "io.github.aadityabaruah.codemaniac");
 });

@@ -1,4 +1,8 @@
 node_modules
+.codemaniac-data/
+.codemaniac-data-backups/
+.codemaniac-logs/
+vscode-extension/*.vsix
 dist
 dist-electron
 *.local

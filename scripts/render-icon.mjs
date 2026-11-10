@@ -26,7 +26,7 @@ const DOCK = path.join(root, "electron", "resources", "app-icon.png");
 const MAC = path.join(root, "build", "icon-mac.png");
 const MAC_DOCK = path.join(root, "electron", "resources", "app-icon-mac.png");
 
-const mark = readFileSync(path.join(root, "public", "brand", "bloks-mark.svg"), "utf8");
+const mark = readFileSync(path.join(root, "public", "brand", "codemaniac-mark.svg"), "utf8");
 const markData = `data:image/svg+xml;base64,${Buffer.from(mark).toString("base64")}`;
 
 // The mark is portrait (1272 x 1483.5). It is sized by height and centred,

@@ -146,12 +146,12 @@ export function Intro({ onDone }: { onDone: () => void }) {
       {stage === "welcome" && (
         <Panel key="welcome">
           <img
-            src="/brand/bloks-wordmark-light.png"
+            src="/brand/codemaniac-wordmark-light.svg"
             alt="Bloks"
             className="intro-rise mx-auto h-12 dark:hidden"
           />
           <img
-            src="/brand/bloks-wordmark-dark.png"
+            src="/brand/codemaniac-wordmark-dark.svg"
             alt=""
             aria-hidden
             className="intro-rise mx-auto hidden h-12 dark:block"

@@ -13,7 +13,7 @@
 // nothing at all says so in one quiet line, with what was written a
 // click away, because an answer silently missing is worse than an
 // answer shown plainly.
-import { Component, createContext, useCallback, useContext, useState, type ReactNode } from "react";
+import { Component, useCallback, useState, type ReactNode } from "react";
 import { Renderer, type ActionEvent, type ParseResult } from "@openuidev/react-lang";
 import { CodeView } from "@/components/Markdown";
 import { useStore } from "@/state/store";
@@ -21,15 +21,11 @@ import { routeAction } from "@/lib/genui/actions";
 import { LabelProvider, useGenUiTarget, useLabelBook } from "./host";
 import { genuiLibrary } from "./library";
 import { t } from "@/lib/i18n";
+import { InsideGenUi } from "./context";
+export { InsideGenUi, useInsideGenUi } from "./context";
 
 /** Set inside a drawn answer. Markdown in a TextContent that holds a
  * fence of its own draws it as code: an answer does not nest answers. */
-export const InsideGenUi = createContext(false);
-
-export function useInsideGenUi(): boolean {
-  return useContext(InsideGenUi);
-}
-
 /** Holds a failure to the block it happened in. A fence still arriving
  * gets another chance with every chunk; a settled one stays as it fell. */
 class Contain extends Component<{ fallback: ReactNode; children: ReactNode; again: string }, { broken: boolean }> {

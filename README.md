@@ -1,3 +1,50 @@
+# CodeManiac
+
+Personal desktop fork of [Bloks](https://github.com/hamedgitty/bloks). The visible app name and identity are CodeManiac; upstream engine integrations and services remain compatible. Original copyright and the FSL-1.1-MIT license are retained.
+
+## Run locally
+
+```sh
+cd /Users/aadityab/Downloads/codemaniac
+./start-codemaniac.command
+```
+
+Requires Node.js 22+, installed dependencies (`pnpm install`), and a built interface (`pnpm build`). The launcher opens the Electron app, which manages its own local server and serves the built interface. Workspace data stays in `.codemaniac-data/`, excluded from Git. Quit the app to stop its server. Runtime data is also excluded from Vite's development watcher so settings changes do not reload the window during development.
+
+## Desktop performance
+
+The notch overlay and agent browser remain available. The sidebar's gradient
+stays still at rest and animates when its resize edge is hovered, focused, or
+dragged. The terminal and interactive-reply renderer load only when used.
+Tests use at most two workers by default to avoid an unbounded local test load.
+
+On the setup machine, visible-window idle CPU across the desktop process tree
+fell from 33–44% to 0–0.3%, with the overlay enabled. Initial application
+JavaScript fell from 4,185,891 to 3,776,062 bytes (9.8%). Summed resident process
+memory after exercising chat and optional panels was about 952 MB; that sum
+can count shared pages more than once and is not unique physical memory.
+
+Validated: production build, type checking, 161 targeted tests, a real agent
+reply, an interactive card, settings navigation, terminal opening/closing,
+and the built-in browser panel. The initial full upstream test run was stopped
+to reduce local load, so this is not a claim that the entire upstream suite
+passed.
+
+## VS Code sidebar
+
+The companion extension lives in [`vscode-extension/`](vscode-extension/README.md).
+It starts an isolated local backend for the chosen VS Code project, displays the
+CodeManiac interface in a sidebar, and adds selection/file context actions.
+It reuses the existing Codex sign-in without launching another Electron app.
+
+Install the VSIX, then run **CodeManiac: Open Sidebar** from VS Code's Command
+Palette. The CodeManiac checkout and its built interface must remain available;
+the extension's **CodeManiac: App Path** setting points at them.
+
+---
+
+## Upstream documentation
+
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="public/brand/bloks-wordmark-dark.png">

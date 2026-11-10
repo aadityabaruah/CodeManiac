@@ -1,0 +1,53 @@
+{
+  "name": "codemaniac-sidebar",
+  "displayName": "CodeManiac",
+  "description": "CodeManiac's coding agents in your VS Code sidebar, connected to your project.",
+  "version": "0.1.1",
+  "publisher": "aadityabaruah",
+  "license": "SEE LICENSE IN LICENSE",
+  "repository": { "type": "git", "url": "https://github.com/aadityabaruah/CodeManiac" },
+  "engines": { "vscode": "^1.96.0" },
+  "categories": ["AI", "Other"],
+  "icon": "media/icon.png",
+  "type": "commonjs",
+  "main": "./extension.cjs",
+  "extensionKind": ["ui"],
+  "capabilities": {
+    "untrustedWorkspaces": { "supported": false, "description": "CodeManiac needs a trusted local folder to run coding-agent tools." },
+    "virtualWorkspaces": { "supported": false }
+  },
+  "activationEvents": ["onView:codemaniac.chat", "onCommand:codemaniac.open"],
+  "contributes": {
+    "viewsContainers": { "activitybar": [{ "id": "codemaniac", "title": "CodeManiac", "icon": "media/activity.svg" }] },
+    "views": { "codemaniac": [{ "id": "codemaniac.chat", "name": "CodeManiac", "type": "webview" }] },
+    "commands": [
+      { "command": "codemaniac.open", "title": "CodeManiac: Open Sidebar" },
+      { "command": "codemaniac.askSelection", "title": "CodeManiac: Ask About Selection", "icon": "$(selection)" },
+      { "command": "codemaniac.askFile", "title": "CodeManiac: Ask About Current File", "icon": "$(file-code)" },
+      { "command": "codemaniac.chooseWorkspace", "title": "CodeManiac: Choose Project Folder", "icon": "$(folder-opened)" },
+      { "command": "codemaniac.reload", "title": "CodeManiac: Reconnect Sidebar", "icon": "$(refresh)" },
+      { "command": "codemaniac.stopServer", "title": "CodeManiac: Stop Sidebar Server" }
+    ],
+    "menus": {
+      "view/title": [
+        { "command": "codemaniac.askSelection", "when": "view == codemaniac.chat", "group": "navigation@1" },
+        { "command": "codemaniac.chooseWorkspace", "when": "view == codemaniac.chat", "group": "navigation@2" },
+        { "command": "codemaniac.reload", "when": "view == codemaniac.chat", "group": "navigation@3" }
+      ],
+      "editor/context": [
+        { "command": "codemaniac.askSelection", "when": "editorHasSelection && resourceScheme == file", "group": "codemaniac@1" },
+        { "command": "codemaniac.askFile", "when": "resourceScheme == file", "group": "codemaniac@2" }
+      ]
+    },
+    "configuration": {
+      "title": "CodeManiac",
+      "properties": {
+        "codemaniac.appPath": { "type": "string", "default": "", "scope": "machine", "description": "Local CodeManiac source folder with installed dependencies and a built interface. Defaults to ~/Downloads/codemaniac." },
+        "codemaniac.nodePath": { "type": "string", "default": "", "scope": "machine", "description": "Node.js executable (22.18 or newer). Leave blank to detect it." },
+        "codemaniac.codexPath": { "type": "string", "default": "", "scope": "machine", "description": "Optional path to the Codex CLI. The Codex desktop app installation is detected automatically on macOS." },
+        "codemaniac.model": { "type": "string", "default": "", "scope": "resource", "description": "Initial Codex model. Leave blank to use your desktop CodeManiac model, or gpt-6.1-terra if none is configured." }
+      }
+    }
+  },
+  "scripts": { "test": "node --test --test-concurrency=1 test/*.test.cjs" }
+}

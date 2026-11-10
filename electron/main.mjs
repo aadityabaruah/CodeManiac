@@ -130,6 +130,7 @@ import { startMeeting, startSpeech, stopMeeting, stopSpeech } from "./speech.mjs
 import { createAttentionSayer } from "./attention-said.mjs";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
+app.setName("CodeManiac");
 const APP_ICON = path.join(HERE, process.platform === "darwin"
   ? "resources/app-icon-mac.png" : "resources/app-icon.png");
 

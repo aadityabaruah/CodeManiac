@@ -41,7 +41,7 @@ const INSTALLED_SOCKET = path.join(app.getPath("home"), "Library/Caches/cua-driv
 const QUIET = { CUA_DRIVER_RS_TELEMETRY_ENABLED: "0", CUA_DRIVER_RS_UPDATE_CHECK: "0" };
 
 /** Identifies this app to the daemon as the holder of the TCC grants. */
-const HOST_BUNDLE_ID = "dev.bloks.app";
+const HOST_BUNDLE_ID = "io.github.aadityabaruah.codemaniac";
 
 const DESCRIPTOR_FILE = () => path.join(app.getPath("userData"), "cua-connection.json");
 

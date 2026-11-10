@@ -7,7 +7,7 @@
 // here shows up in the main window's panel too, and the other way round,
 // since both watch the same stream.
 import { useEffect, useState } from "react";
-import { TerminalPanel } from "@/components/Terminal";
+import { TerminalPanel } from "./LazyTerminalPanel";
 import { ConfirmHost } from "@/components/ui/confirm";
 import { Toaster } from "@/components/ui/toast";
 import { api } from "@/state/store";

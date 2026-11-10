@@ -36,7 +36,10 @@ export default defineConfig({
     // Build output lives inside the repo, and watching it means every
     // package run reloads the browser mid-edit.
     watch: {
-      ignored: ["**/release/**", "**/build/**", "**/dist/**", "**/electron/resources/**"],
+      ignored: [
+        "**/release/**", "**/build/**", "**/dist/**", "**/electron/resources/**",
+        "**/.codemaniac-data/**", "**/.codemaniac-logs/**",
+      ],
     },
     // In development the app and the harness are two processes, so the
     // API is proxied to keep the browser on a single origin, exactly as

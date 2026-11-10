@@ -1,17 +1,17 @@
 {
-  "name": "bloks",
+  "name": "codemaniac",
   "version": "3.2.8",
   "private": true,
-  "description": "A local-first desktop workspace for personal AI agents.",
+  "description": "CodeManiac, a personal fork of the Bloks desktop AI workspace.",
   "license": "SEE LICENSE IN LICENSE",
   "author": "Bloks contributors",
-  "homepage": "https://github.com/hamedgitty/bloks#readme",
+  "homepage": "https://github.com/aadityabaruah/CodeManiac#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hamedgitty/bloks.git"
+    "url": "git+https://github.com/aadityabaruah/CodeManiac.git"
   },
   "bugs": {
-    "url": "https://github.com/hamedgitty/bloks/issues"
+    "url": "https://github.com/aadityabaruah/CodeManiac/issues"
   },
   "keywords": [
     "ai-agents",
@@ -34,7 +34,7 @@
     "dev:desktop": "node scripts/bundle-updater.mjs && electron .",
     "build": "node scripts/bundle-updater.mjs && tsc -b && tsc -p tsconfig.server.json && vite build",
     "typecheck": "tsc -b && tsc -p tsconfig.server.json && tsc -p tsconfig.test.json",
-    "test": "node --test --test-timeout=300000 \"test/*.test.ts\"",
+    "test": "node --test --test-concurrency=2 --test-timeout=300000 \"test/*.test.ts\"",
     "test:watch": "node --test --watch \"test/*.test.ts\"",
     "preview": "vite preview",
     "build:server": "tsc -p tsconfig.server.build.json && node scripts/mark-server-esm.mjs && node scripts/stage-server-deps.mjs",
@@ -90,5 +90,6 @@
     "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3",
     "vite": "^7.1.0"
-  }
+  },
+  "productName": "CodeManiac"
 }

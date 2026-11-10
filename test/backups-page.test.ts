@@ -58,8 +58,8 @@ test("each step of a restore under way reads as a sentence, and a stop says noth
 });
 
 test("a backup's line says what made it and what is inside", () => {
-  assert.equal(backupDetails(plain), "Bloks 2.6.0 · 12.4 MB");
-  assert.equal(backupDetails({ ...plain, encrypted: true, secrets: true, undo: true, size: 2_100_000_000 }), "Bloks 2.6.0 · 2.1 GB · sealed · with Undo history · with saved keys");
+  assert.equal(backupDetails(plain), "CodeManiac 2.6.0 · 12.4 MB");
+  assert.equal(backupDetails({ ...plain, encrypted: true, secrets: true, undo: true, size: 2_100_000_000 }), "CodeManiac 2.6.0 · 2.1 GB · sealed · with Undo history · with saved keys");
   assert.match(backupDetails({ ...plain, damaged: true, size: 300 }), /^1 KB · cannot be read/);
   assert.equal(sizeText(512_000), "512 KB");
   assert.equal(kindLabel("automatic"), "Automatic");

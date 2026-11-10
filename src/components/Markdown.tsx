@@ -12,7 +12,7 @@
 // the same distance from the one before it, a heading takes more above
 // than below so it belongs to what it names, and the first block of a
 // reply sits flush with whatever holds it.
-import { memo, useMemo, useState, useSyncExternalStore, type CSSProperties } from "react";
+import { lazy, memo, Suspense, useMemo, useState, useSyncExternalStore, type CSSProperties } from "react";
 import { Check } from "@/components/icons";
 import { Copy } from "@/components/icons";
 import { CornerDownLeft } from "@/components/icons";
@@ -25,9 +25,11 @@ import { splitHighlight } from "@/lib/find";
 import { looksShared } from "@/lib/sharedFile";
 import { TableScroll } from "./TableScroll";
 import { SharedFileLink } from "./Artifacts";
-import { GenUIBlock, useInsideGenUi } from "./genui/GenUIBlock";
+import { useInsideGenUi } from "./genui/context";
 import { isOpenUiLang } from "@/lib/genui/schema";
 import { t } from "@/lib/i18n";
+
+const GenUIBlock = lazy(() => import("./genui/GenUIBlock").then((module) => ({ default: module.GenUIBlock })));
 
 /** The gap every block keeps from the one above it, tighter under a
  * heading, and none at all for the first. */
@@ -536,7 +538,9 @@ function MarkdownishBlocks({ text, highlight = "", mentions, streaming }: Markdo
           // gap above it is the one every block keeps.
           [
             <div key={`u${b}`} data-genui className={FLOW}>
-              <GenUIBlock code={block.code} streaming={streaming} />
+              <Suspense fallback={<div role="status" className="text-body text-muted-foreground">{t("genui.loading")}</div>}>
+                <GenUIBlock code={block.code} streaming={streaming} />
+              </Suspense>
             </div>,
           ]
         ) : block.kind === "code" ? (

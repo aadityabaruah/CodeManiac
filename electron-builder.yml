@@ -1,6 +1,6 @@
-appId: dev.bloks.app
-productName: Bloks
-artifactName: Bloks-${version}-${arch}.${ext}
+appId: io.github.aadityabaruah.codemaniac
+productName: CodeManiac
+artifactName: CodeManiac-${version}-${arch}.${ext}
 
 directories:
   buildResources: build
@@ -55,7 +55,7 @@ extraResources:
 
 # bloks://team/<slug>, from "Add to Bloks" on the website's team gallery
 protocols:
-  - name: Bloks
+  - name: CodeManiac
     schemes: [bloks]
 
 mac:
@@ -102,8 +102,8 @@ mac:
   entitlements: build/entitlements.mac.plist
   entitlementsInherit: build/entitlements.mac.plist
   extendInfo:
-    NSMicrophoneUsageDescription: Bloks uses the microphone for voice dictation, calls with your agents, and meeting notes. Speech is transcribed on this Mac.
-    NSSpeechRecognitionUsageDescription: Bloks transcribes your voice on-device to type messages for you.
+    NSMicrophoneUsageDescription: CodeManiac uses the microphone for voice dictation, calls with your agents, and meeting notes. Speech is transcribed on this Mac.
+    NSSpeechRecognitionUsageDescription: CodeManiac transcribes your voice on-device to type messages for you.
     # Dropbox, Google Drive, OneDrive and Box keep their files in
     # ~/Library/CloudStorage, behind a file provider. macOS asks before an
     # app reads them, and the agents' processes ask as Bloks. Without this
@@ -124,7 +124,7 @@ dmg:
   # someone opens it. Signing the disk image on top of that has a history
   # of invalidating the ticket, and buys nothing.
   sign: false
-  artifactName: Bloks-${version}.dmg
+  artifactName: CodeManiac-${version}.dmg
   # Both made by scripts/stage-dmg-art.mjs (package:prep): the window's
   # art from build/dmg-background*.png, drawn from the mark by
   # scripts/render-dmg-background.mjs, and the volume icon from
@@ -199,6 +199,6 @@ nsis:
 # Releases go to GitHub, which is also where an auto-updater would look.
 publish:
   provider: github
-  owner: hamedgitty
-  repo: bloks
+  owner: aadityabaruah
+  repo: CodeManiac
   releaseType: draft
